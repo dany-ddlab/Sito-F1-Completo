@@ -1,0 +1,266 @@
+body {
+  font-family: "Titillium Web", sans-serif;
+  margin: 0;
+}
+
+/* Tema */
+body.dark {
+  background: #05060a;
+  color: #f5f5f5;
+}
+
+body.light {
+  background: #f0f0f0;
+  color: #111;
+}
+
+/* Header + nav */
+.header {
+  padding: 20px 10px 25px;
+  background: linear-gradient(90deg, #e10600, #111);
+  color: white;
+  position: relative;
+  box-shadow: 0 0 20px #e10600;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.nav-link {
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #f5f5f5;
+  background: rgba(0,0,0,0.35);
+  font-size: 14px;
+}
+
+.nav-link.active {
+  background: #e10600;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.header h2 {
+  margin: 4px 0 0;
+  font-size: 18px;
+  opacity: 0.9;
+}
+
+.header-actions {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.header-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.header-actions button:hover {
+  background: #e10600;
+}
+
+/* Tabella */
+.classifica {
+  width: 100%;
+  max-width: 1200px;
+  margin: 25px auto;
+  border-collapse: collapse;
+  background: #11141b;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 18px;
+  position: relative;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideIn 0.8s ease-out forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.neon-border {
+  box-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000;
+  border: 2px solid #ff0000;
+}
+
+.classifica thead {
+  background: #181b24;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.classifica th,
+.classifica td {
+  padding: 16px;
+  text-align: left;
+}
+
+.classifica tbody tr:nth-child(even) {
+  background: #151823;
+}
+
+/* Righe animate */
+.classifica tbody tr {
+  transition: 0.25s ease;
+}
+
+.classifica tbody tr:hover {
+  background: #e10600 !important;
+  transform: scale(1.01);
+  box-shadow: 0 0 12px #e10600;
+}
+
+/* Loghi scuderie */
+.logo-scuderia {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.badge-scuderia {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Trend */
+.trend-up {
+  color: #00ff7f;
+  font-size: 22px;
+}
+
+.trend-down {
+  color: #ff4b4b;
+  font-size: 22px;
+}
+
+.trend-same {
+  color: #b0b0b0;
+  font-size: 22px;
+}
+
+/* Anim punti */
+.punti-anim {
+  animation: puntiFlash 0.6s ease-out;
+}
+
+@keyframes puntiFlash {
+  0% { color: yellow; transform: scale(1.2); }
+  100% { color: inherit; transform: scale(1); }
+}
+
+/* Card sezioni sotto */
+.card-section {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 16px;
+  background: #11141b;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #000;
+}
+
+.card-section h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+/* Storico gare */
+#storico-gare {
+  font-size: 14px;
+}
+
+.gara-block {
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.gara-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.gara-punti {
+  margin-left: 10px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .classifica {
+    font-size: 16px;
+  }
+
+  .logo-scuderia {
+    width: 26px;
+    height: 26px;
+  }
+
+  .classifica th,
+  .classifica td {
+    padding: 12px;
+  }
+
+  .header-actions {
+    position: static;
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .nav {
+    margin-bottom: 4px;
+  }
+}
+/* ============================
+   NOME METALLIZZATO PODIO
+============================ */
+
+/* ORO */
+.nome-oro {
+  background: linear-gradient(90deg, #f7e27c, #d4af37, #f7e27c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+/* ARGENTO */
+.nome-argento {
+  background: linear-gradient(90deg, #e6e6e6, #c0c0c0, #f2f2f2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* BRONZO */
+.nome-bronzo {
+  background: linear-gradient(90deg, #e8b07a, #cd7f32, #e8b07a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>F1 League 2025 - Classifica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="classifica.css">
+</head>
+<body class="dark">
+
+  <header class="header">
+    <div class="nav">
+      <a href="classifica.html" class="nav-link active">🏆 Classifica</a>
+      <a href="admin.html" class="nav-link">⚙️ Admin</a>
+    </div>
+    <h1>F1 League 2025</h1>
+    <h2>Classifica Piloti</h2>
+
+    <div class="header-actions">
+      <button id="theme-toggle">🌙 Tema</button>
+      <button id="print-btn">🖨️ Stampa PDF</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <table class="classifica neon-border">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Pilota</th>
+            <th>Num</th>
+            <th>Scuderia</th>
+            <th>Punti</th>
+            <th>Trend</th>
+          </tr>
+        </thead>
+        <tbody id="classifica-body"></tbody>
+      </table>
+    </section>
+
+    <section class="card-section">
+      <h2>Storico gare</h2>
+      <div id="storico-gare"></div>
+    </section>
+
+    <section class="card-section">
+      <h2>Andamento punti per gara</h2>
+      <canvas id="chart-gara" height="120"></canvas>
+    </section>
+
+    <section class="card-section">
+      <h2>Andamento punti cumulati</h2>
+      <canvas id="chart-cumulato" height="120"></canvas>
+    </section>
+  </main>
+
+  <script src="libs/chart.min.js"></script>
+  <script src="classifica.js"></script>
+</body>
+</html>
