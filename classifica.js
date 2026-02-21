@@ -259,6 +259,8 @@ function renderGrafici() {
 renderClassifica();
 renderStoricoGare();
 renderGrafici();
+renderClassificaCostruttori();
+
 
 /* Tema */
 document.getElementById("theme-toggle").addEventListener("click", () => {
@@ -270,4 +272,5 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 document.getElementById("print-btn").addEventListener("click", () => {
   window.print();
 });
+
 
