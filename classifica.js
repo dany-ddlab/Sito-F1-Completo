@@ -89,20 +89,29 @@ function renderClassifica() {
 function renderClassificaCostruttori() {
   const { piloti, scuderie } = getDati();
 
-  // Somma punti per scuderia
+  // Normalizza nomi scuderie
   const puntiScuderie = {};
+  scuderie.forEach(s => {
+    puntiScuderie[s.nome.trim().toLowerCase()] = 0;
+  });
 
-  scuderie.forEach(s => puntiScuderie[s.nome] = 0);
-
+  // Somma punti piloti → scuderia
   piloti.forEach(p => {
-    if (puntiScuderie[p.scuderia] !== undefined) {
-      puntiScuderie[p.scuderia] += p.punti;
+    const nomeScuderia = p.scuderia.trim().toLowerCase();
+    if (puntiScuderie[nomeScuderia] !== undefined) {
+      puntiScuderie[nomeScuderia] += p.punti;
     }
   });
 
   // Converti in array ordinato
   const classifica = Object.entries(puntiScuderie)
-    .map(([nome, punti]) => ({ nome, punti }))
+    .map(([nome, punti]) => {
+      const scuderiaOriginale = scuderie.find(s => s.nome.trim().toLowerCase() === nome);
+      return {
+        nome: scuderiaOriginale ? scuderiaOriginale.nome : nome,
+        punti
+      };
+    })
     .sort((a, b) => b.punti - a.punti);
 
   const tbody = document.getElementById("classifica-costruttori");
@@ -124,6 +133,7 @@ function renderClassificaCostruttori() {
     tbody.appendChild(tr);
   });
 }
+
 
 /* ============================
    STORICO GARE
@@ -272,5 +282,6 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 document.getElementById("print-btn").addEventListener("click", () => {
   window.print();
 });
+
 
 
