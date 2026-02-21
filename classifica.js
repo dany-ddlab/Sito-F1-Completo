@@ -82,57 +82,6 @@ function renderClassifica() {
     tbody.appendChild(tr);
   });
 }
-/* ============================
-   CLASSIFICA COSTRUTTORI
-============================ */
-
-function renderClassificaCostruttori() {
-  const { piloti, scuderie } = getDati();
-
-  // Normalizza nomi scuderie
-  const puntiScuderie = {};
-  scuderie.forEach(s => {
-    puntiScuderie[s.nome.trim().toLowerCase()] = 0;
-  });
-
-  // Somma punti piloti → scuderia
-  piloti.forEach(p => {
-    const nomeScuderia = p.scuderia.trim().toLowerCase();
-    if (puntiScuderie[nomeScuderia] !== undefined) {
-      puntiScuderie[nomeScuderia] += p.punti;
-    }
-  });
-
-  // Converti in array ordinato
-  const classifica = Object.entries(puntiScuderie)
-    .map(([nome, punti]) => {
-      const scuderiaOriginale = scuderie.find(s => s.nome.trim().toLowerCase() === nome);
-      return {
-        nome: scuderiaOriginale ? scuderiaOriginale.nome : nome,
-        punti
-      };
-    })
-    .sort((a, b) => b.punti - a.punti);
-
-  const tbody = document.getElementById("classifica-costruttori");
-  tbody.innerHTML = "";
-
-  classifica.forEach((s, index) => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${index + 1}</td>
-      <td class="${
-        index === 0 ? 'nome-oro' :
-        index === 1 ? 'nome-argento' :
-        index === 2 ? 'nome-bronzo' : ''
-      }">${s.nome}</td>
-      <td>${s.punti}</td>
-    `;
-
-    tbody.appendChild(tr);
-  });
-}
 
 
 /* ============================
@@ -261,6 +210,58 @@ function renderGrafici() {
     }
   });
 }
+/* ============================
+   CLASSIFICA COSTRUTTORI
+============================ */
+
+function renderClassificaCostruttori() {
+  const { piloti, scuderie } = getDati();
+
+  // Normalizza nomi scuderie
+  const puntiScuderie = {};
+  scuderie.forEach(s => {
+    puntiScuderie[s.nome.trim().toLowerCase()] = 0;
+  });
+
+  // Somma punti piloti → scuderia
+  piloti.forEach(p => {
+    const nomeScuderia = p.scuderia.trim().toLowerCase();
+    if (puntiScuderie[nomeScuderia] !== undefined) {
+      puntiScuderie[nomeScuderia] += p.punti;
+    }
+  });
+
+  // Converti in array ordinato
+  const classifica = Object.entries(puntiScuderie)
+    .map(([nome, punti]) => {
+      const scuderiaOriginale = scuderie.find(s => s.nome.trim().toLowerCase() === nome);
+      return {
+        nome: scuderiaOriginale ? scuderiaOriginale.nome : nome,
+        punti
+      };
+    })
+    .sort((a, b) => b.punti - a.punti);
+
+  const tbody = document.getElementById("classifica-costruttori");
+  tbody.innerHTML = "";
+
+  classifica.forEach((s, index) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${index + 1}</td>
+      <td class="${
+        index === 0 ? 'nome-oro' :
+        index === 1 ? 'nome-argento' :
+        index === 2 ? 'nome-bronzo' : ''
+      }">${s.nome}</td>
+      <td>${s.punti}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
 
 /* ============================
    AVVIO
@@ -282,6 +283,7 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 document.getElementById("print-btn").addEventListener("click", () => {
   window.print();
 });
+
 
 
 
