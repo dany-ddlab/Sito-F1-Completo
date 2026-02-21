@@ -82,6 +82,48 @@ function renderClassifica() {
     tbody.appendChild(tr);
   });
 }
+/* ============================
+   CLASSIFICA COSTRUTTORI
+============================ */
+
+function renderClassificaCostruttori() {
+  const { piloti, scuderie } = getDati();
+
+  // Somma punti per scuderia
+  const puntiScuderie = {};
+
+  scuderie.forEach(s => puntiScuderie[s.nome] = 0);
+
+  piloti.forEach(p => {
+    if (puntiScuderie[p.scuderia] !== undefined) {
+      puntiScuderie[p.scuderia] += p.punti;
+    }
+  });
+
+  // Converti in array ordinato
+  const classifica = Object.entries(puntiScuderie)
+    .map(([nome, punti]) => ({ nome, punti }))
+    .sort((a, b) => b.punti - a.punti);
+
+  const tbody = document.getElementById("classifica-costruttori");
+  tbody.innerHTML = "";
+
+  classifica.forEach((s, index) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${index + 1}</td>
+      <td class="${
+        index === 0 ? 'nome-oro' :
+        index === 1 ? 'nome-argento' :
+        index === 2 ? 'nome-bronzo' : ''
+      }">${s.nome}</td>
+      <td>${s.punti}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
 
 /* ============================
    STORICO GARE
@@ -228,3 +270,4 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
 document.getElementById("print-btn").addEventListener("click", () => {
   window.print();
 });
+
